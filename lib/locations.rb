@@ -1,22 +1,13 @@
-require 'active_record'
-
-ActiveRecord::Base.establish_connection(
-    adapter: "sqlite3",
-    database: "biolocations.db"
-)
-
-ActiveRecord::Schema.define do
-    create_table :unidades do | table | 
-        table.column :acronym, :string
-        table.column :name, :string
-        table.column :cidade, :string
-    end
+# Separar este model
+class Location < ActiveRecord::Base
+  def initialize(acronym, name, city)
+      @acronym = acronym
+  end
 end
 
-class Unidade < ActiveRecord::Base
-end
+# Separar estas chamadas
+Unidade.create(acronym: "PTA", name: "Paulista", city: "São Paulo")
 
-Unidade.create(acronym: "PTA", name: "Paulista", cidade: "São Paulo")
-
-unidade = Unidade.new(acronym: "SPJDN5", name: "Paulista", cidade: "São Paulo")
+unidade = Unidade.new(acronym: "SPJDN5", name: "Paulista", city: "São Paulo")
 unidade.save
+
