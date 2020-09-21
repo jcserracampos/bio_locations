@@ -3,9 +3,9 @@ class GroupLocations
     @name = name
     @brand = brand
     @open = open
-    self.speak
   end
 
+  # TODO: Remover estes dois métodos e fazer um switch case no brand_name
   def bioritmo?
     @brand == 1
   end
@@ -36,6 +36,3 @@ class GroupLocations
     puts "A #{@name} é da marca #{brand_name} e #{open?}"
   end
 end
-
-group = GroupLocations.new('SP2', 1)
-group_2 = GroupLocations.new('PTA', 2, false)

@@ -1,14 +1,12 @@
-require 'active_record'
+require 'sqlite3'
 
-ActiveRecord::Base.establish_connection(
-    adapter: "sqlite3",
-    database: "biolocations.db"
-)
+require_relative 'Locations'
 
-ActiveRecord::Schema.define do
-    create_table :unidades do | table | 
-        table.column :acronym, :string
-        table.column :name, :string
-        table.column :cidade, :string
-    end
-end
+# Criando o banco de dados e a tabela
+@@db = SQLite3::Database.new 'locations.db'
+
+@@db.execute 'CREATE TABLE IF NOT EXISTS Locations(acronym TEXT, name TEXT, city TEXT)'
+@@db.execute 'CREATE TABLE IF NOT EXISTS LocationGroups(name TEXT, acronym TEXT, brand TEXT)'
+
+location = Locations.new("PTA", "Paulista", "São Paulo")
+location.save
