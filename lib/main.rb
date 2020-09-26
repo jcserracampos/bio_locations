@@ -8,5 +8,8 @@ require_relative 'Locations'
 @@db.execute 'CREATE TABLE IF NOT EXISTS Locations(acronym TEXT, name TEXT, city TEXT)'
 @@db.execute 'CREATE TABLE IF NOT EXISTS LocationGroups(name TEXT, acronym TEXT, brand TEXT)'
 
-location = Locations.new("PTA", "Paulista", "São Paulo")
-location.save
+# location = Locations.new("PTA", "Paulista", "São Paulo")
+# location.save
+
+
+Locations.all
