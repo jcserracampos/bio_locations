@@ -1,7 +1,9 @@
 # frozen_string_literal: true
 
+require_relative 'application.rb'
+
 # Esta classe e responsavel por lidar com Unidades
-class Locations
+class Locations < Application
   def initialize(acronym, name, city)
     @acronym = acronym
     @name = name
@@ -9,11 +11,11 @@ class Locations
   end
 
   def save
-    @@db.execute "INSERT INTO Locations VALUES ('#{@acronym}', '#{@name}', '#{@city}');"
+    @database.execute "INSERT INTO Locations VALUES ('#{@acronym}', '#{@name}', '#{@city}');"
   end
 
   def self.all
-    @locations = @@db.execute 'SELECT * FROM Locations'
-    puts @locations
+    @locations = @database.execute 'SELECT * FROM Locations'
+    return @locations unless @locations.empty?
   end
 end
