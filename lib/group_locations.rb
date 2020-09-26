@@ -5,6 +5,22 @@ class GroupLocations
     @open = open
   end
 
+  def save
+    @@db.execute "INSERT INTO LocationGroups VALUES ('#{@name}', '#{@brand}', '#{@open}');"
+  end
+
+  def self.count
+    @@db.execute 'SELECT count * FROM LocationGroups'
+  end
+
+  def self.all
+    @@db.execute 'SELECT * FROM LocationGroups'
+  end
+
+  def self.find(name)
+    @@db.execute "SELECT * FROM LocationGroups WHERE '#{@name}'"
+  end
+  
   # TODO: Remover estes dois métodos e fazer um switch case no brand_name
   def bioritmo?
     @brand == 1
@@ -36,3 +52,4 @@ class GroupLocations
     puts "A #{@name} é da marca #{brand_name} e #{open?}"
   end
 end
+
